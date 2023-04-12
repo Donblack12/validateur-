@@ -1,0 +1,27 @@
+name: PHP CodeSniffer
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  phpcs:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install PHPCS
+      run: composer install
+
+    - name: Run PHPCS
+      uses: localheinz/composer-normalize-action@v3.3.0
+      with:
+        args: 'run-script lint'
+
+    - name: Upload PHPCS Report
+      uses: actions/upload-artifact@v2
+      with:
+        name: phpcs-report
+        path: phpcs.xml

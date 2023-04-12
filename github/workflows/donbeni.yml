@@ -3,7 +3,7 @@ name: PHP CodeSniffer
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   phpcs:
